@@ -1,11 +1,6 @@
-use xshell::{cmd, Shell};
+use indirection::macro_container;
+use indirection::macro_container::inner_macro;
 
-// xshell docs: https://docs.rs/xshell/latest/xshell/index.html
-
-fn main() -> anyhow::Result<()> {
-    let sh = Shell::new()?;
-
-    cmd!(sh, "echo \"hello world!\"").run()?;
-
-    Ok(())
+fn main() {
+    inner_macro!()
 }

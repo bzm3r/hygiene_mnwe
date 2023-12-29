@@ -3,20 +3,6 @@
 version = 3
 
 [[package]]
-name = "hygiene_mnwe"
-version = "0.1.0"
-dependencies = [
- "indirection",
-]
-
-[[package]]
-name = "indirection"
-version = "0.1.0"
-dependencies = [
- "macro_container",
-]
-
-[[package]]
 name = "inside"
 version = "0.1.0"
 dependencies = [

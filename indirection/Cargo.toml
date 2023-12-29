@@ -1,9 +1,9 @@
 [package]
-name = "hygiene_mnwe"
+name = "indirection"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-indirection = { version = "0.1.0", path = "indirection" }
+macro_container = { version = "0.1.0", path = "../macro_container" }
