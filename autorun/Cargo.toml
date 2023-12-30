@@ -1,0 +1,16 @@
+[package]
+name = "autorun"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.77"
+bpaf = { version = "0.9.8", features = [
+    "bright-color",
+    "autocomplete",
+    "docgen",
+    "derive",
+] }
+owo-colors = "4.0.0"
+strip-ansi-escapes = "0.2.0"
+xshell = "0.2.5"

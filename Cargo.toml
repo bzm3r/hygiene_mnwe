@@ -1,4 +1,4 @@
 [workspace]
 resolver = "2"
 
-members = ["indirector", "macro_inside", "user"]
+members = ["indirector", "macro_inside", "user", "autorun"]
