@@ -1,4 +1,4 @@
 #[allow(unused)]
-pub fn hello_world() {
+pub fn message() {
     println!("hello world!");
 }
