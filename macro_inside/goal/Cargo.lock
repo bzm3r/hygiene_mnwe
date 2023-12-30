@@ -3,24 +3,10 @@
 version = 3
 
 [[package]]
-name = "indirection"
-version = "0.1.0"
-dependencies = [
- "macro_container",
-]
-
-[[package]]
-name = "inside"
+name = "goal"
 version = "0.1.0"
 dependencies = [
  "quote",
-]
-
-[[package]]
-name = "macro_container"
-version = "0.1.0"
-dependencies = [
- "inside",
 ]
 
 [[package]]

@@ -1,7 +1,0 @@
-[package]
-name = "macro_container"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-inside = { version = "0.1.0", path = "inside" }

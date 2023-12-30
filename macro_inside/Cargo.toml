@@ -1,0 +1,12 @@
+[package]
+name = "macro_inside"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["original"]
+original = []
+wrapper = []
+
+[dependencies]
+goal = { version = "0.1.0", path = "goal" }

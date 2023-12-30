@@ -10,13 +10,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "indirector"
-version = "0.1.0"
-dependencies = [
- "macro_inside",
-]
-
-[[package]]
 name = "macro_inside"
 version = "0.1.0"
 dependencies = [
@@ -46,10 +39,3 @@ name = "unicode-ident"
 version = "1.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b"
-
-[[package]]
-name = "user"
-version = "0.1.0"
-dependencies = [
- "indirector",
-]

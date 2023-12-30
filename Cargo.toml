@@ -1,12 +1,4 @@
-[package]
-name = "hygiene_mnwe"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+resolver = "2"
 
-[features]
-default = ["original"]
-original = []
-wrapper = []
-
-[dependencies]
-indirection = { version = "0.1.0", path = "indirection" }
+members = ["indirector", "macro_inside", "user"]

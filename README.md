@@ -1,43 +1,68 @@
-Difference from [`main`](https://github.com/bzm3r/hygiene_mnwe/tree/main) branch: addresses possible error in original `main` branch of not explicitly exporting `message` function from the `hello_world` module of `macro_container`. Also, in order to test whether `macro_container` can properly use `inner`, `macro_container` now exports a function `wrapper` which calls `inner_macro`.
+# What should happen
 
-To try out this funciton, introduced a new feature called `"wrapper"` on the primary binary. Neither the original `main` (`"default"` feature) or the `"wrapper"`'s `main` work.
-
-`cargo run` should produce:
-
-```
-error[E0433]: failed to resolve: could not find `macro_container` in the list of imported crates
- --> macro_container/src/lib.rs:6:5
-  |
-6 |     inner_macro!();
-  |     ^^^^^^^^^^^^^^ could not find `macro_container` in the list of imported crates
-  |
-  = note: this error originates in the macro `inner_macro` (in Nightly builds, run with -Z macro-backtrace for more info)
+```txt
+hello world!
 ```
 
-`cargo run --features wrapper` should produce:
+# What will happen
 
-```
-error[E0433]: failed to resolve: could not find `macro_container` in the list of imported crates
- --> macro_container/src/lib.rs:6:5
+`cargo run --bin user` should produce:
+
+```txt
+error[E0433]: failed to resolve: could not find `macro_inside` in the list of imported crates
+ --> user/src/main.rs:9:5
   |
-6 |     inner_macro!();
-  |     ^^^^^^^^^^^^^^ could not find `macro_container` in the list of imported crates
+9 |     inner_macro!()
+  |     ^^^^^^^^^^^^^^ could not find `macro_inside` in the list of imported crates
   |
   = note: this error originates in the macro `inner_macro` (in Nightly builds, run with -Z macro-backtrace for more info)
 ```
 
-Note that the errors are identical in this case.
+`cargo run --bin user --features wrapper` should produce:
 
-Also added a `main` function to `macro_container`, to see if it can call `inner_macro` successfully (it does not).
-
-`cargo run --manifest-path ./macro_container/Cargo.toml` should produce:
-
-```
-error[E0433]: failed to resolve: could not find `macro_container` in the list of imported crates
- --> src/lib.rs:6:5
+```txt
+ --> macro_inside/src/lib.rs:6:5
   |
 6 |     inner_macro!();
-  |     ^^^^^^^^^^^^^^ could not find `macro_container` in the list of imported crates
+  |     ^^^^^^^^^^^^^^ could not find `macro_inside` in the list of imported crates
   |
   = note: this error originates in the macro `inner_macro` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider importing this module
+  |
+2 + use crate::hello_world;
+  |
 ```
+
+`cargo run --bin macro_inside` should produce:
+
+```txt
+    Finished dev [unoptimized + debuginfo] target(s) in 0.11s
+     Running `target/debug/macro_inside`
+hello world!
+```
+
+`cargo run --bin macro_inside --features wrapper` should produce:
+
+```txt
+error[E0433]: failed to resolve: could not find `macro_inside` in the list of imported crates
+ --> macro_inside/src/lib.rs:6:5
+  |
+6 |     inner_macro!();
+  |     ^^^^^^^^^^^^^^ could not find `macro_inside` in the list of imported crates
+  |
+  = note: this error originates in the macro `inner_macro` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider importing this module
+  |
+2 + use crate::hello_world;
+  |
+```
+
+# Aside: difference from the original main (if you saw it)
+
+Difference between this commit and the original [`main`](https://github.com/bzm3r/hygiene_mnwe/tree/71ecc4b2f09b7b8cfe12052167996a9dbc9bcb5f) branch: addresses possible error in original `main` branch of not explicitly exporting `print` function from the `hello_world` module of `macro_inside`. Also, in order to test whether `macro_inside` can properly use `inner`, `macro_inside` now exports a function `wrapper` which calls `inner_macro`.
+
+To try conditionally try a code path using this function, a new feature called `"wrapper"` is introduced.
+
+Also created a `main` function on `macro_inside`, which allows testing whether it can use `inner_macro!` successfully (it can).
+
+Finally, created a separate crate for the testing binary called `user`.

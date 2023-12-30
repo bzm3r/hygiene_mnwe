@@ -1,0 +1,12 @@
+[package]
+name = "user"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["original"]
+original = ["indirector/original"]
+wrapper = ["indirector/wrapper"]
+
+[dependencies]
+indirector = { version = "0.1.0", path = "../indirector" }
