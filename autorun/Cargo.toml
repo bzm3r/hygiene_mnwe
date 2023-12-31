@@ -13,4 +13,6 @@ bpaf = { version = "0.9.8", features = [
 ] }
 owo-colors = "4.0.0"
 strip-ansi-escapes = "0.2.0"
+toml = "0.8.8"
 xshell = "0.2.5"
+ide = { git = "https://github.com/rust-lang/rust-analyzer.git" }
