@@ -3,5 +3,5 @@ pub use payload::target;
 
 #[cfg(feature = "wrapper")]
 pub fn wrapper() {
-    target!();
+    target!(crate);
 }
