@@ -1,7 +1,7 @@
 pub mod hello_world;
-pub use goal::inner_macro;
+pub use payload::target;
 
 #[cfg(feature = "wrapper")]
 pub fn wrapper() {
-    inner_macro!();
+    target!();
 }

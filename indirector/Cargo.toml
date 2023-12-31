@@ -8,8 +8,8 @@ edition = "2021"
 
 [features]
 default = ["original"]
-original = ["macro_inside/original"]
-wrapper = ["macro_inside/wrapper"]
+original = ["container/original"]
+wrapper = ["container/wrapper"]
 
 [dependencies]
-macro_inside = { version = "0.1.0", path = "../macro_inside", optional = true }
+container = { version = "0.1.0", path = "../container", optional = true }

@@ -84,8 +84,10 @@ impl Display for Test {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(
             f,
-            "#### `{}`\n\nWill produce:\n\n```txt\n{}```",
-            self.cmd, self.output
+            "#### {} `{}`\n\nWill produce:\n\n```txt\n{}```", //✗ ✓
+            if self.success { "✓" } else { "✗" },
+            self.cmd,
+            self.output
         )
     }
 }
@@ -107,16 +109,17 @@ pub fn difference<F: Write>(f: &mut F, diff: Option<Cow<'static, str>>) -> anyho
 
 fn what_will_happen<F: Write>(f: &mut F, tests: &[Test]) -> anyhow::Result<()> {
     writeln!(f, "# What will happen\n")?;
-    writeln!(f, "Overall:")?;
+    writeln!(f, "## Overall:\n")?;
     for test in tests {
         writeln!(
             f,
-            "    - {}: `{}`",
-            if test.success { "**SUCCESS**" } else { "FAIL" },
+            "- [{}] {}: `{}`",
+            if test.success { "x" } else { " " },
+            if test.success { "ok" } else { "fail" }, //
             test.cmd
         )?;
     }
-    writeln!(f)?;
+    writeln!(f, "\n ## Details")?;
     for test in tests {
         writeln!(f, "{}", test)?;
     }

@@ -1,6 +1,6 @@
 fn main() {
     #[cfg(feature = "original")]
-    indirector::macro_inside::inner_macro!();
+    indirector::container::target!();
     #[cfg(feature = "wrapper")]
-    indirector::macro_inside::wrapper();
+    indirector::container::wrapper();
 }

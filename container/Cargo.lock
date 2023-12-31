@@ -3,10 +3,17 @@
 version = 3
 
 [[package]]
-name = "goal"
+name = "payload"
 version = "0.1.0"
 dependencies = [
  "quote",
+]
+
+[[package]]
+name = "container"
+version = "0.1.0"
+dependencies = [
+ "payload",
 ]
 
 [[package]]
