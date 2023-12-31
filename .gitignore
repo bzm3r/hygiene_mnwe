@@ -1,2 +1,6 @@
 target/
 .vscode
+Cargo.lock
+container/Cargo.lock
+container/payload/Cargo.lock
+indirector/Cargo.lock
