@@ -1,0 +1,48 @@
+intro = """# Purpose
+
+A toy model to explore a procedural macro hygiene issue where [absolute paths](https://doc.rust-lang.org/reference/procedural-macros.html#procedural-macro-hygiene) do not work.
+
+The situation arises from the following setup:
+* [`container`] contains the procedural macro crate `payload`
+* `payload::`[`target`] is a function-like procedural macro which generates a call to the function `container::hello_world::`[`print`]
+* [`container`] publicly exports `target`
+* the crate `indirector` publicly exports [`container`]
+* the crate `user` depends on `indirector` to call `target`
+
+Doing this naively (see the `main` branch) leads to errors ultimately related to path resolution.
+"""
+
+[branch]
+name = "main"
+description = "The original problem setup."
+
+[map.target]
+description = "The function-like procedural macro we wish [to call from `user`](map.call_target)"
+link = "payload::target"
+
+[map.payload]
+description = "A procedural macro crate defining the [`target`] macro we wish to call"
+link = "container::payload"
+
+[map.container]
+description = "A library crate containing the procedural macro crate [`payload`](map.payload)"
+
+[map.user]
+description = "The binary crate which depends on [`indirector`] to call [`payload::target`](map.target)"
+
+[map.indirector]
+description = "A library crate publicly re-exporting whatever [`container`] publicly exports."
+
+[map.call_target]
+description = "The call to [`target`] from [`user`] we wish would work."
+link = "user::main"
+
+[map.print]
+description = "The function which [`target`] generates a call to."
+link = "container::hello_world::print"
+
+tests = [
+    { package = "user", features = "original" },
+    { package = "container", features = "original" },
+    { package = "container", features = "wrapper" },
+]
