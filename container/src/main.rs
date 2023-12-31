@@ -1,6 +1,6 @@
 fn main() {
     #[cfg(feature = "original")]
-    macro_inside::inner_macro!();
+    container::target!();
     #[cfg(feature = "wrapper")]
-    macro_inside::wrapper();
+    container::wrapper();
 }

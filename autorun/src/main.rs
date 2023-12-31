@@ -25,7 +25,7 @@ fn main() -> anyhow::Result<()> {
     let opts = auto_run().run();
     let sh = Shell::new()?;
 
-    let packages = ["user", "macro_inside"];
+    let packages = ["user", "container"];
     let features = [vec![], vec!["wrapper"]];
     let test_cmds: Vec<TestCmd> = packages
         .iter()

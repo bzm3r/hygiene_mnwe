@@ -3,17 +3,10 @@
 version = 3
 
 [[package]]
-name = "goal"
+name = "payload"
 version = "0.1.0"
 dependencies = [
  "quote",
-]
-
-[[package]]
-name = "macro_inside"
-version = "0.1.0"
-dependencies = [
- "goal",
 ]
 
 [[package]]
